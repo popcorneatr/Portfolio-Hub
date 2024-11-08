@@ -1,0 +1,78 @@
+:root {
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --bg-color: #f9f9f9;
+    --text-color: #333;
+    --card-bg: #fff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --border-radius: 10px;
+}
+  
+body {
+    background-color: var(--bg-color);
+    font-family: 'Arial', sans-serif;
+}
+  
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    color: var(--text-color);
+}
+  
+.home-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eaeaea;
+}
+  
+h1 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+  
+.add-project-btn {
+    display: flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0 4px 10px var(--card-shadow);
+}
+  
+.add-project-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+  
+.add-project-btn:active {
+    transform: translateY(0);
+}
+  
+.add-project-btn span {
+    margin-left: 10px;
+}
+  
+.project-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 10px 0;
+}
+  
+.no-projects {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+    padding: 40px 0;
+}

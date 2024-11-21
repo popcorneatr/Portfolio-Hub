@@ -1,25 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Axios from "axios";
 import Card from "../../components/Card.jsx";
 import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
 import { FiPlus } from "react-icons/fi";
 
+
 function Home() {
   const navigate = useNavigate();
   const [listOfProjects, setListOfProjects] = useState([]);
 
+
   const fetchApi = async () => {
     try {
-      const response = await Axios.get("http://localhost:3001/getProjects");
+      const token = localStorage.getItem("token");
+      const response = await Axios.get("http://localhost:3001/user/projects", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setListOfProjects(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
+
+
   useEffect(() => {
     fetchApi();
+
   }, []);
 
   return (

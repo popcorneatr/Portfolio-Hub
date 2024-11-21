@@ -1,0 +1,71 @@
+.landing-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #667eea,
+    #764ba2
+  ); 
+  color: #333;
+  position: relative;
+  overflow: hidden;
+  font-family: "Arial", sans-serif;
+}
+
+.overlay {
+  text-align: center;
+  padding: 20px;
+}
+
+.header-title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #f7f7f7;
+  margin-bottom: 15px;
+}
+
+.header-description {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  margin-bottom: 40px;
+}
+
+/* Call-to-action buttons container */
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.cta-button {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.login-button {
+  background-color: #4a90e2;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+}
+
+.signup-button {
+  background-color: #34c759; 
+  box-shadow: 0 4px 12px rgba(52, 199, 89, 0.4);
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}

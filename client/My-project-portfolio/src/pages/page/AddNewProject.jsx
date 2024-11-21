@@ -7,7 +7,6 @@ function AddNewProject() {
   const navigate = useNavigate();
   const initialProjectState = {
     projectName: '',
-    projectOwner: '',
     github: '',
     websiteLink: '',
     completed: false,
@@ -18,11 +17,16 @@ function AddNewProject() {
 
   const createProject = async () => {
     try {
-      await Axios.post("http://localhost:3001/createProject", project);
+      const token = localStorage.getItem("token");
+      await Axios.post("http://localhost:3001/createProject", project,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       // Clear the form fields
       setProject(initialProjectState);
       // Navigate back to the Home page after creation
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.error("Error creating project:", error);
     }

@@ -68,11 +68,14 @@ h1 {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
     padding: 10px 0;
+    min-height: 200px; 
+    place-items: center;
 }
   
 .no-projects {
     text-align: center;
     font-size: 1.2rem;
     color: #777;
+    grid-column: 1 / -1;
     padding: 40px 0;
 }

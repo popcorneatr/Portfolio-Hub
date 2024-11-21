@@ -19,18 +19,6 @@ function ProjectForm({ project, handleChange, createProject }) {
         </div>
         
         <div className="form-group">
-          <label htmlFor="projectOwner">Project Owner*</label>
-          <input
-            type="text"
-            id="projectOwner"
-            name="projectOwner"
-            placeholder="Enter project owner"
-            value={project.projectOwner}
-            onChange={handleChange}
-          />
-        </div>
-        
-        <div className="form-group">
           <label htmlFor="github">GitHub URL</label>
           <input
             type="text"

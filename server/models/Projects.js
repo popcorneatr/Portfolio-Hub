@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const { Schema } = mongoose;
 
 const ProjectSchema = new mongoose.Schema({
     projectName: {
@@ -7,9 +8,17 @@ const ProjectSchema = new mongoose.Schema({
     },
 
     projectOwner: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: "users",
         required: true
     },
+
+    linkedUsers: [
+        {
+          type: Schema.Types.ObjectId, 
+          ref: "users",
+        },
+      ],
 
     completed: {
         type: Boolean,

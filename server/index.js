@@ -13,6 +13,7 @@ app.use(cors());
 
 const dbUrl = process.env.DATABASE_URL;
 const jwtSecret = process.env.JWT_SECRET;
+const PORT = process.env.PORT || 3001;
 
 mongoose.connect(dbUrl);
 
@@ -120,6 +121,6 @@ app.post("/user/login", async (req, res) => {
   }
 });
 
-app.listen(3001, () => {
+app.listen(PORT, () => {
   console.log("Server is Running!");
 });

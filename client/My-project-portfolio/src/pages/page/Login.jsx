@@ -4,6 +4,10 @@ import "../styles/Login.css";
 import Axios from "axios"
 
 const Login = () => {
+
+  const localhost = "http://localhost:3001";
+  const render = "https://portfolio-hub-eapv.onrender.com";
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -19,7 +23,7 @@ const Login = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-      const response = await Axios.post("http://localhost:3001/user/login", formData)
+      const response = await Axios.post(`${render}/user/login`, formData)
       const { token } = response.data;
       localStorage.setItem("token", token);
       navigate("/home");

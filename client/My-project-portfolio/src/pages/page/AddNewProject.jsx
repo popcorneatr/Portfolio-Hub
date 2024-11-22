@@ -4,7 +4,12 @@ import ProjectForm from "../../components/ProjectForm.jsx";
 import { useNavigate } from "react-router-dom";
 
 function AddNewProject() {
+
+  const localhost = "http://localhost:3001";
+  const render = "https://portfolio-hub-eapv.onrender.com";
   const navigate = useNavigate();
+
+
   const initialProjectState = {
     projectName: '',
     github: '',
@@ -18,7 +23,7 @@ function AddNewProject() {
   const createProject = async () => {
     try {
       const token = localStorage.getItem("token");
-      await Axios.post("http://localhost:3001/createProject", project,{
+      await Axios.post(`${render}/createProject`, project,{
         headers: {
           Authorization: `Bearer ${token}`,
         },

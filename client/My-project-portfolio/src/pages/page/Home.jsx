@@ -7,6 +7,9 @@ import { FiPlus } from "react-icons/fi";
 
 
 function Home() {
+
+  const localhost = "http://localhost:3001";
+  const render = "https://portfolio-hub-eapv.onrender.com";
   const navigate = useNavigate();
   const [listOfProjects, setListOfProjects] = useState([]);
 
@@ -14,7 +17,7 @@ function Home() {
   const fetchApi = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await Axios.get("http://localhost:3001/user/projects", {
+      const response = await Axios.get(`${render}/user/projects`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

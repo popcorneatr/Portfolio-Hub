@@ -4,6 +4,11 @@ import "../styles/Signup.css";
 import Axios from "axios";
 
 const SignUp = () => {
+
+  const localhost = "http://localhost:3001";
+  const render = "https://portfolio-hub-eapv.onrender.com";
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -11,17 +16,17 @@ const SignUp = () => {
     githubName: "",
   });
 
-  const navigate = useNavigate();
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      Axios.post("http://localhost:3001/user", formData)
+      Axios.post(`${render}/user`, formData)
       console.log("Success sign up", formData)
       navigate("/login");
     } catch (error) {

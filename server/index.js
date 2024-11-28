@@ -77,6 +77,26 @@ app.post("/createProject", verifyToken, async (req, res) => {
   }
 });
 
+//Delete a project
+app.delete("/project/:id", verifyToken, async (req, res) => {
+  try {
+    const projectId = req.params.id;
+    const userId = req.userId;
+
+    // Check if the project belongs to the logged-in user
+    const project = await ProjectModel.findOne({ _id: projectId, projectOwner: userId });
+    if (!project) {
+      return res.status(403).send("Unauthorized action");
+    }
+
+    await ProjectModel.deleteOne({ _id: projectId });
+    res.status(200).send("Project deleted successfully");
+  } catch (error) {
+    console.error("Error deleting project:", error);
+    res.status(500).send("Server error");
+  }
+});
+
 // Register a user
 app.post("/user", async (req, res) => {
   try {

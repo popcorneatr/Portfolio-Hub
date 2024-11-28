@@ -84,7 +84,10 @@ app.delete("/project/:id", verifyToken, async (req, res) => {
     const userId = req.userId;
 
     // Check if the project belongs to the logged-in user
-    const project = await ProjectModel.findOne({ _id: projectId, projectOwner: userId });
+    const project = await ProjectModel.findOne({
+      _id: projectId,
+      projectOwner: userId,
+    });
     if (!project) {
       return res.status(403).send("Unauthorized action");
     }
@@ -131,13 +134,39 @@ app.post("/user/login", async (req, res) => {
       const token = jwt.sign({ userId: user._id }, jwtSecret, {
         expiresIn: "1h",
       });
-      res.json({ message: "Login successful", token });
+
+      res.json({
+        message: "Login successful",
+        token,
+        user: {
+          _id: user._id,
+          username: user.username,
+        },
+      });
     } else {
       res.status(401).send("Invalid credentials");
     }
   } catch (error) {
     console.error("Error during login:", error);
     res.status(500).send("server error");
+  }
+});
+
+// Public route to get projects by userId
+app.get("/user/projects/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const user = await UserModel.findById(userId, "username"); // Fetch only username
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+    const userProjects = await ProjectModel.find({
+      projectOwner: userId,
+    }).populate("projectOwner", "username");
+    res.json({ username: user.username, projects: userProjects });
+  } catch (error) {
+    console.error("Error fetching user projects:", error);
+    res.status(500).send("Server error");
   }
 });
 

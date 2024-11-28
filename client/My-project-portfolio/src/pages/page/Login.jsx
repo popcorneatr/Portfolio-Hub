@@ -24,8 +24,9 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await Axios.post(`${localhost}/user/login`, formData)
-      const { token } = response.data;
+      const { token, user } = response.data;
       localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
       navigate("/home");
     } catch (error) {
       console.error("Login failed:", error.response?.data || error.message);

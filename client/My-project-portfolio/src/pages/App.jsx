@@ -5,6 +5,7 @@ import AddNewProject from "./page/AddNewProject.jsx";
 import LandingPage from './page/LandingPage.jsx';
 import SignUp from './page/SignUp.jsx';
 import Login from './page/Login.jsx';
+import SharedHome from "./page/SharedHome.jsx";
 // import { AuthProvider } from '../context/AuthContext.jsx';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/home' element={<Home/>}/>
         <Route path="/add-new-project" element={<AddNewProject />} />
+        <Route path="/shared/:userId" element={<SharedHome />} />
       </Routes>
     {/* </AuthProvider> */}
     </BrowserRouter>

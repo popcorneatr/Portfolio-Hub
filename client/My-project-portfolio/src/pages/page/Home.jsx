@@ -11,6 +11,8 @@ function Home() {
   const localhost = "http://localhost:3001";
   const render = "https://portfolio-hub-eapv.onrender.com";
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user")); // Get logged-in user
+  const userId = user?._id;
   const [listOfProjects, setListOfProjects] = useState([]);
 
 
@@ -37,8 +39,27 @@ function Home() {
   const handleLogout = () => {
     // Clear the token from localStorage
     localStorage.removeItem("token");
+    // Clear projects
+    setListOfProjects([]);
     // Redirect to the landing page
     navigate("/");
+  };
+
+  const handleShare = () => {
+    if (userId) {
+      const shareableLink = `http://localhost:5173/shared/${userId}`;
+      // Try to copy the link to clipboard
+      navigator.clipboard.writeText(shareableLink)
+        .then(() => {
+          alert("Link copied to clipboard! Share it with others.");
+        })
+        .catch((err) => {
+          console.error("Error copying link: ", err);
+          alert("Failed to copy link.");
+        });
+    } else {
+      alert("You need to be logged in to share your projects.");
+    }
   };
 
   useEffect(() => {
@@ -51,13 +72,21 @@ function Home() {
       <header className="home-header">
         <h1>My Projects</h1>
         <div className="header-buttons">
-          <button className="add-project-btn" onClick={() => navigate("/add-new-project")}>
-            <FiPlus size={20} />
-            <span>Add New Project</span>
+          {window.location.pathname === "/home" && (
+            <button className="add-project-btn" onClick={() => navigate("/add-new-project")}>
+              <FiPlus size={20} />
+              <span>Add New Project</span>
+            </button>
+          )}
+
+          <button onClick={handleShare} className="share-button">
+            Share My Projects
           </button>
+
           <button className="logout-btn" onClick={handleLogout}>
             Logout
           </button>
+
         </div>
       </header>
 

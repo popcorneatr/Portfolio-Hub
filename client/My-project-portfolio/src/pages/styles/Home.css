@@ -48,7 +48,6 @@ h1 {
   font-weight: 600;
   transition: background-color 0.3s ease, transform 0.2s;
   box-shadow: 0 4px 10px var(--card-shadow);
-  
 }
 
 .add-project-btn:hover {
@@ -85,19 +84,34 @@ h1 {
   background-color: #c82333;
 }
 
+.share-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.share-button:hover {
+  background-color: #45a049;
+}
+
 /* Scale down the button for smaller screens */
 @media (max-width: 768px) {
-    .add-project-btn {
-      padding: 8px 14px; 
-      font-size: 14px; 
-    }
+  .add-project-btn {
+    padding: 8px 14px;
+    font-size: 14px;
   }
-  
-  @media (max-width: 480px) {
-    .add-project-btn {
-      padding: 6px 12px; 
-      font-size: 12px; 
-    }
+}
+
+@media (max-width: 480px) {
+  .add-project-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 }
 
 .project-display {

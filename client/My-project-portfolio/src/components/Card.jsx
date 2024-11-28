@@ -7,6 +7,12 @@ function Card({ project, onDelete }) {
   const localhost = "http://localhost:3001";
   const render = "https://portfolio-hub-eapv.onrender.com";
   const projectOwnerName = project.projectOwner?.username || "Unknown Owner";
+ 
+    // Get user data from localStorage
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    // If user is not logged in or there's no user object, return a fallback UI or disable the delete button
+    const isOwner = user ? project.projectOwner._id === user._id : false;
 
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this project?")) {
@@ -27,7 +33,7 @@ function Card({ project, onDelete }) {
 
   return (
     <div className='card-container'>
-      <button className="delete-button" onClick={handleDelete}>&times;</button>
+      {isOwner && <button className="delete-button" onClick={handleDelete}>&times;</button>}
       <h1 className='card-name'>Project Name: {project.projectName}</h1>
       <h2 className='card-owner'>Project Owner: {projectOwnerName}</h2>
       <p className='card-link'>

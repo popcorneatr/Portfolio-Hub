@@ -1,11 +1,33 @@
 import React from 'react';
+import Axios from 'axios';
 import "./styles/Card.css";
 
-function Card({ project }) {
-  const projectOwnerName = project.projectOwner?.username || "Unknown Owner"; // Handle cases where projectOwner is undefined
+function Card({ project, onDelete }) {
+
+  const localhost = "http://localhost:3001";
+  const render = "https://portfolio-hub-eapv.onrender.com";
+  const projectOwnerName = project.projectOwner?.username || "Unknown Owner";
+
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this project?")) {
+      try {
+        const token = localStorage.getItem("token");
+        await Axios.delete(`${localhost}/project/${project._id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        // Notify the parent to remove the card from the UI
+        onDelete(project._id);
+      } catch (error) {
+        console.error("Error deleting project:", error);
+      }
+    }
+  };
 
   return (
     <div className='card-container'>
+      <button className="delete-button" onClick={handleDelete}>&times;</button>
       <h1 className='card-name'>Project Name: {project.projectName}</h1>
       <h2 className='card-owner'>Project Owner: {projectOwnerName}</h2>
       <p className='card-link'>
@@ -26,3 +48,4 @@ function Card({ project }) {
 }
 
 export default Card;
+

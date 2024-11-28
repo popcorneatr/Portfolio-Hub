@@ -26,7 +26,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      Axios.post(`${render}/user`, formData)
+      Axios.post(`${localhost}/user`, formData)
       console.log("Success sign up", formData)
       navigate("/login");
     } catch (error) {

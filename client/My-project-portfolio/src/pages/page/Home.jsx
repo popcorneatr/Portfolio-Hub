@@ -17,7 +17,7 @@ function Home() {
   const fetchApi = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await Axios.get(`${render}/user/projects`, {
+      const response = await Axios.get(`${localhost}/user/projects`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -28,7 +28,18 @@ function Home() {
     }
   };
 
+  const handleDelete = (projectId) => {
+    setListOfProjects((prevProjects) =>
+      prevProjects.filter((project) => project._id !== projectId)
+    );
+  };
 
+  const handleLogout = () => {
+    // Clear the token from localStorage
+    localStorage.removeItem("token");
+    // Redirect to the landing page
+    navigate("/");
+  };
 
   useEffect(() => {
     fetchApi();
@@ -39,15 +50,21 @@ function Home() {
     <div className='home-container'>
       <header className="home-header">
         <h1>My Projects</h1>
-        <button className="add-project-btn" onClick={() => navigate("/add-new-project")}>
-          <FiPlus size={20} />
-          <span>Add New Project</span>
-        </button>
+        <div className="header-buttons">
+          <button className="add-project-btn" onClick={() => navigate("/add-new-project")}>
+            <FiPlus size={20} />
+            <span>Add New Project</span>
+          </button>
+          <button className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
       </header>
+
       <div className='project-display'>
         {listOfProjects.length > 0 ? (
           listOfProjects.map((project) => (
-            <Card project={project} key={project._id} />
+            <Card project={project} key={project._id} onDelete={handleDelete}/>
           ))
         ) : (
           <p className="no-projects">No projects found. Click the button above to add a new project.</p>

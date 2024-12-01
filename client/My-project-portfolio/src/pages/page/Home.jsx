@@ -12,7 +12,7 @@ function Home() {
   const render = "https://portfolio-hub-eapv.onrender.com";
 
   const frontendLocalhost = "http://localhost:5173";
-  const production = "https://popcorneatr-portfolio-hub.netlify.app/";
+  const production = "https://popcorneatr-portfolio-hub.netlify.app";
 
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user")); // Get logged-in user

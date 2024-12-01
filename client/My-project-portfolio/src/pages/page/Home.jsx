@@ -19,7 +19,7 @@ function Home() {
   const fetchApi = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await Axios.get(`${localhost}/user/projects`, {
+      const response = await Axios.get(`${render}/user/projects`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -47,7 +47,7 @@ function Home() {
 
   const handleShare = () => {
     if (userId) {
-      const shareableLink = `http://localhost:5173/shared/${userId}`;
+      const shareableLink = `${render}/shared/${userId}`;
       // Try to copy the link to clipboard
       navigator.clipboard.writeText(shareableLink)
         .then(() => {

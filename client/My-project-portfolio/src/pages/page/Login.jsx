@@ -23,7 +23,7 @@ const Login = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-      const response = await Axios.post(`${localhost}/user/login`, formData)
+      const response = await Axios.post(`${render}/user/login`, formData)
       const { token, user } = response.data;
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));

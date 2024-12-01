@@ -14,7 +14,7 @@ function SharedHome() {
 
   const fetchSharedProjects = async () => {
     try {
-      const response = await Axios.get(`${localhost}/user/projects/${userId}`);
+      const response = await Axios.get(`${render}/user/projects/${userId}`);
       setListOfProjects(response.data.projects);
       setUsername(response.data.username);
     } catch (error) {

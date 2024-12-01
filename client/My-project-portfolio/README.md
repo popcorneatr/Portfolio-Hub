@@ -10,4 +10,4 @@ Currently, two official plugins are available:
 
 To start server navigate to server folder and "npm start" and to start client navigate to client folder then to My-project-portfolio and type "npm run dev" in terminal
 
-On deploy change localhost to render on card.jsx, addnewproject.jsx, home.jsx, login.jsx, and signup.jsx
+On deploy change localhost to render on card.jsx, shared home.jsx, addnewproject.jsx, home.jsx, login.jsx, and signup.jsx

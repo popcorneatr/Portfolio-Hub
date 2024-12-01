@@ -23,7 +23,7 @@ function AddNewProject() {
   const createProject = async () => {
     try {
       const token = localStorage.getItem("token");
-      await Axios.post(`${localhost}/createProject`, project,{
+      await Axios.post(`${render}/createProject`, project,{
         headers: {
           Authorization: `Bearer ${token}`,
         },

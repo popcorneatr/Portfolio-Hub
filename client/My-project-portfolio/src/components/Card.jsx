@@ -18,7 +18,7 @@ function Card({ project, onDelete }) {
     if (window.confirm("Are you sure you want to delete this project?")) {
       try {
         const token = localStorage.getItem("token");
-        await Axios.delete(`${localhost}/project/${project._id}`, {
+        await Axios.delete(`${render}/project/${project._id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -10,6 +10,10 @@ function Home() {
 
   const localhost = "http://localhost:3001";
   const render = "https://portfolio-hub-eapv.onrender.com";
+
+  const frontendLocalhost = "http://localhost:5173";
+  const production = "https://popcorneatr-portfolio-hub.netlify.app/";
+
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user")); // Get logged-in user
   const userId = user?._id;
@@ -46,10 +50,9 @@ function Home() {
   };
 
   const handleShare = () => {
+    const frontendBaseUrl = production;
+    
     if (userId) {
-      
-      const frontendBaseUrl =
-        process.env.REACT_APP_FRONTEND_URL || "http://localhost:5173";
       const shareableLink = `${frontendBaseUrl}/shared/${userId}`;
       // Try to copy the link to clipboard
       navigator.clipboard.writeText(shareableLink)
@@ -67,8 +70,7 @@ function Home() {
 
   useEffect(() => {
     fetchApi();
-
-  }, []);
+  }, [userId]);
 
   return (
     <div className='home-container'>

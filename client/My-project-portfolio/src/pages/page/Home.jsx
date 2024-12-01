@@ -47,7 +47,10 @@ function Home() {
 
   const handleShare = () => {
     if (userId) {
-      const shareableLink = `${render}/shared/${userId}`;
+      
+      const frontendBaseUrl =
+        process.env.REACT_APP_FRONTEND_URL || "http://localhost:5173";
+      const shareableLink = `${frontendBaseUrl}/shared/${userId}`;
       // Try to copy the link to clipboard
       navigator.clipboard.writeText(shareableLink)
         .then(() => {
